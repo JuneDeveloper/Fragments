@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Fragments</string>
+    <string name="toolbarName">Мои заметки</string>
+    <string name="inputText">Введите заметку</string>
+    <string name="add">Добавить</string>
+    <string name="exit">Выход</string>
+    <string name="textNote">Текст заметки</string>
+    <string name="date">Дата создания</string>
+    <string name="time">Время создания</string>
+    <string name="number">*</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

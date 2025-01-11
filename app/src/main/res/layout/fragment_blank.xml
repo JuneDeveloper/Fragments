@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlankFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <EditText
+            android:id="@+id/inputET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/inputText"
+            android:textSize="24sp"
+            android:layout_margin="10dp"
+            tools:ignore="Autofill,TextFields" />
+
+        <Button
+            android:id="@+id/addBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            tools:listitem="@layout/list_item"/>
+
+    </LinearLayout>
+
+</FrameLayout>

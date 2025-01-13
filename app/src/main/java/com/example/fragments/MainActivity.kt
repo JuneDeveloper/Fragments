@@ -2,16 +2,14 @@ package com.example.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.FragmentTransaction
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),OnFragmentDataListener {
 
     private lateinit var toolbarTB:Toolbar
 
@@ -24,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbarTB)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container,BlankFragment())
+            .add(R.id.fragment_main,MainFragment())
             .commit()
     }
 
@@ -38,5 +36,19 @@ class MainActivity : AppCompatActivity() {
             R.id.exitItem -> finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onData(data: String?) {
+        val bundle = Bundle()
+        bundle.putString("note",data.toString())
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val detailsFragment = DetailsFragment()
+        detailsFragment.arguments = bundle
+
+        transaction.replace(R.id.fragment_main,detailsFragment)
+        transaction.addToBackStack(null)
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction.commit()
     }
 }

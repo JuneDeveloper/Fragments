@@ -1,6 +1,7 @@
 package com.example.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class CustomAdapter(private val notes: MutableList<Notes>):
+class CustomAdapter(private val notes: MutableList<Notes>,private val onItemClicked:(String)->Unit):
     RecyclerView.Adapter<CustomAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,7 +28,6 @@ class CustomAdapter(private val notes: MutableList<Notes>):
     }
     override fun getItemCount(): Int = notes.size
 
-
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
@@ -35,5 +35,8 @@ class CustomAdapter(private val notes: MutableList<Notes>):
         holder.noteTV.text = note.noteText
         holder.dateTV.text = note.date
         holder.timeTV.text = note.time
+        holder.itemView.setOnClickListener {
+           onItemClicked(note.toString())
+        }
     }
 }

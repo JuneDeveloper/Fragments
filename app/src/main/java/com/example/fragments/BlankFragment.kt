@@ -29,12 +29,13 @@ class BlankFragment : Fragment() {
     @SuppressLint("NewApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
-        val time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString()
         val noteTextET: EditText = view.findViewById(R.id.inputET)
         val addBTN: Button = view.findViewById(R.id.addBTN)
         val recycleView: RecyclerView = view.findViewById(R.id.recycleViewRV)
+
         addBTN.setOnClickListener {
+            val date = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
+            val time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString()
             val note = Notes(count,noteTextET.text.toString(),date,time)
             listNote.add(note)
             recycleView.layoutManager = LinearLayoutManager(context)

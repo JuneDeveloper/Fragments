@@ -36,7 +36,7 @@ class CustomAdapter(private val notes: MutableList<Notes>,private val onItemClic
         holder.dateTV.text = note.date
         holder.timeTV.text = note.time
         holder.itemView.setOnClickListener {
-           onItemClicked(note.toString())
+           onItemClicked(note.noteText.toString())
         }
     }
 }

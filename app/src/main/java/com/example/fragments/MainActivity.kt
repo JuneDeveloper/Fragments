@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(),OnFragmentDataListener {
 
     override fun onData(data: String?) {
         val bundle = Bundle()
-        bundle.putString("note",data.toString())
+        bundle.putString("key",data)
 
         val transaction = this.supportFragmentManager.beginTransaction()
         val detailsFragment = DetailsFragment()

@@ -19,35 +19,34 @@ class MainFragment : Fragment() {
 
     private lateinit var onFragmentDataListener: OnFragmentDataListener
     private var count = 0
-    private val new = mutableListOf<Notes>()
-    private var listNote = mutableListOf<Notes>()
+    private val listNote = mutableListOf<Notes>()
+    private var adapter:CustomAdapter?=null
 
     @SuppressLint("NewApi", "NotifyDataSetChanged", "SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setRetainInstance(true)
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         Log.d("BEGIN","START/RESTART")
         Log.d("TAG","старый лист ${listNote.size}")
-        Log.d("TAG","новый лист ${new.size}")
-
-        val savedNotes = savedInstanceState?.getParcelableArrayList<Notes>("notes")
-        if (savedNotes != null) {
-            listNote.clear()
-            listNote.addAll(savedNotes)
-            new.addAll(savedNotes)
-            Log.d("TAG","Получение данных из Bundle")
-            Log.d("TAG","общее количество ${listNote.size}")
-        }
-
-        onFragmentDataListener = requireActivity() as OnFragmentDataListener
 
         val noteTextET: EditText = view.findViewById(R.id.inputET)
         val addBTN: Button = view.findViewById(R.id.addBTN)
         val recycleView: RecyclerView = view.findViewById(R.id.recycleViewRV)
 
-        val adapter = CustomAdapter(listNote) { selectItem ->
+        val savedNotes = savedInstanceState?.getParcelableArrayList<Notes>("notes")
+        if (savedNotes != null) {
+            noteTextET.text.clear()
+            listNote.clear()
+            listNote.addAll(savedNotes)
+            Log.d("TAG","Получение данных из Bundle")
+            Log.d("TAG","общее количество ${listNote.size}")
+        }
+        onFragmentDataListener = requireActivity() as OnFragmentDataListener
+
+        adapter = CustomAdapter(listNote) { selectItem ->
             onFragmentDataListener.onData(selectItem)
         }
         recycleView.layoutManager = LinearLayoutManager(context)
@@ -58,7 +57,7 @@ class MainFragment : Fragment() {
             val time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")).toString()
             val note = Notes(count, noteTextET.text.toString(), date, time)
             listNote.add(note)
-            adapter.notifyItemInserted(listNote.size - 1)
+            adapter!!.notifyItemInserted(listNote.size - 1)
             count++
             noteTextET.text.clear()
         }

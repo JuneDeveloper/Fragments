@@ -1,17 +1,15 @@
-package com.example.fragments
+package com.example.fragments.utils
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
+import com.example.fragments.model.Notes
+import com.example.fragments.R
 
-class CustomAdapter(private val notes: MutableList<Notes>,private val onItemClicked:(String)->Unit):
+class CustomAdapter(private val notes: MutableList<Notes>, private val onItemClicked:(String)->Unit):
     RecyclerView.Adapter<CustomAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -2,12 +2,13 @@ package com.example.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
+import com.example.fragments.fragments.DetailsFragment
+import com.example.fragments.fragments.MainFragment
 
 class MainActivity : AppCompatActivity(),OnFragmentDataListener {
 
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity(),OnFragmentDataListener {
         setSupportActionBar(toolbarTB)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_main,MainFragment())
+            .add(R.id.fragment_main, MainFragment())
             .commit()
     }
 

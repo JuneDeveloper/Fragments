@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.fragments.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.RecyclerView
+import com.example.fragments.OnFragmentDataListener
+import com.example.fragments.R
 
 
-class DetailsFragment : Fragment(),OnFragmentDataListener {
+class DetailsFragment : Fragment(), OnFragmentDataListener {
 
     private lateinit var onFragmentDataListener: OnFragmentDataListener
     private lateinit var detailsET:EditText
@@ -37,6 +37,8 @@ class DetailsFragment : Fragment(),OnFragmentDataListener {
     }
 
     override fun onData(data: String?) {
+        note = data
+        parentFragmentManager.popBackStack()
         val bundle = Bundle()
         bundle.putString("newNote",data)
         bundle.putString("oldNote",note)

@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.fragments.model
 
 import android.os.Parcel
 import android.os.Parcelable
